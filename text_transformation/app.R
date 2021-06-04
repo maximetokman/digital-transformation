@@ -19,10 +19,10 @@ ui <- fluidPage(
         inputId = "text_name",
         label = "Select a text to interpret:",
         choices = list(
-          "Algorithms of Oppression by Safiya Umoja Noble" = "algorithms",
-          "Americanah by Chimamanda Ngozi Adichie" = "americanah",
+          "Algorithms of Oppression" = "algorithms",
+          "Americanah" = "americanah",
           "Selection of Poems by Emily Dickinson" = "dickinson",
-          "Stories of Your Life and Others by Ted Chiang" = "story"
+          "Stories of Your Life and Others" = "story"
         )
       )
     )
@@ -64,11 +64,11 @@ server <- function(input, output) {
         scale_x_continuous(expand = c(0,0)) +
         scale_fill_distiller(palette = "Spectral") +
         theme_minimal() +
-        # labs(
-        #   title = paste("Word Frequencies in", names(text_titles[text_titles == input$text_name]), sep = " "),
-        #   x = "Frequency",
-        #   y = "Word"
-        # ) +
+        labs(
+          title = paste("Word Frequencies in", names(text_titles[text_titles == input$text_name]), sep = " "),
+          x = "Frequency",
+          y = "Word"
+        ) +
         theme(
           axis.text.y = element_text(size = 12, face = "bold"),
           panel.grid = element_blank(),
