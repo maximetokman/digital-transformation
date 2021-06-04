@@ -2,7 +2,7 @@ import re
 from string import punctuation
 from nltk.corpus import stopwords
 
-files = ["dickinson", "algorithms", "americanah", "story"]
+files = ["dickinson", "algorithms", "americanah", "story", "areopagitica"]
 
 for f in files:
     print(f)

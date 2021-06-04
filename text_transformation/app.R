@@ -22,7 +22,8 @@ ui <- fluidPage(
           "Algorithms of Oppression" = "algorithms",
           "Americanah" = "americanah",
           "Selection of Poems by Emily Dickinson" = "dickinson",
-          "Stories of Your Life and Others" = "story"
+          "Stories of Your Life and Others" = "story",
+          "Areopagitica" = "areopagitica"
         )
       )
     )
@@ -39,6 +40,7 @@ server <- function(input, output) {
   americanah_data <- read_csv("data/americanah.csv")
   dickinson_data <- read_csv("data/dickinson.csv")
   story_data <- read_csv("data/story.csv")
+  areopagitica_data <- read_csv("data/areopagitica.csv")
   
   output$word_counts <- renderPlot({
     text_data <- switch(
@@ -46,13 +48,15 @@ server <- function(input, output) {
       "algorithms" = algorithms_data,
       "americanah" = americanah_data,
       "dickinson" = dickinson_data,
-      "story" = story_data
+      "story" = story_data,
+      "areopagitica" = areopagitica_data
     )
     text_titles = list(
       "*Algorithms of Oppression*" = "algorithms",
       "*Americanah*" = "americanah",
       "Emily Dickinson's poetry" = "dickinson",
-      "*Stories of Your Life and Others*" = "story"
+      "*Stories of Your Life and Others*" = "story",
+      "*Areopagitica*" = "areopagitica"
     )
     # text_data <- algorithms_data
     text_data <- text_data %>% 
@@ -70,9 +74,11 @@ server <- function(input, output) {
           y = "Word"
         ) +
         theme(
-          axis.text.y = element_text(size = 12, face = "bold"),
+          axis.text.y = element_text(face = "bold"),
           panel.grid = element_blank(),
-          plot.title = element_markdown()
+          plot.title = element_markdown(size = 20),
+          axis.text = element_text(size = 12),
+          axis.title = element_text(size = 14)
         )
   })
 }
