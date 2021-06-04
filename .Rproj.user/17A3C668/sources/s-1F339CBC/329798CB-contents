@@ -1,4 +1,0 @@
-# Shiny App
-
-# read data once
-algorithms <- readLines("")
