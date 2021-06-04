@@ -9,15 +9,12 @@ for f in files:
     file = open(f"data/{f}.txt", errors="ignore")
     file_text = file.readlines()
     arr_words = []
-    # print(file_text)
     file_wcount = {}
     # split words by commas and spaces
     for line in file_text:
         arr_words += re.split(",|\\s", line)
-    # remove blank elements
-    arr_words = list(filter(lambda w:w != "", arr_words))
-    # remove punctuation
-    arr_words = [w.strip(punctuation) for w in arr_words]
+    # remove blank elements and special characters
+    arr_words = list(filter(lambda w:re.match("^[A-Za-z]+$", w), arr_words))
     # convert to lowercase
     arr_words = [w.lower() for w in arr_words]
     # remove common words
@@ -29,8 +26,10 @@ for f in files:
         file_wcount[word] = file_wcount.get(word, 0) + 1
 
     # write word counts to csv
-    with open(f"text_transformation/data/{f}.csv", "w") as csv_out:
-        csv_out.write("Word, Count\n")
-        for word in list(file_wcount.keys()):
-            csv_out.write(f"{word}, {file_wcount[word]}\n")
+    dir_out = ["text_transformation/data", "data"]
+    for dir in dir_out:
+        with open(f"{dir}/{f}.csv", "w") as csv_out:
+            csv_out.write("word, count\n")
+            for word in list(file_wcount.keys()):
+                csv_out.write(f"{word}, {file_wcount[word]}\n")
 
