@@ -65,7 +65,7 @@ server <- function(input, output) {
     text_data %>% 
       ggplot(aes(count, word, fill = count)) +
         geom_bar(stat = "identity", width = 0.5, show.legend = FALSE) +
-        scale_x_continuous(expand = c(0,0)) +
+        scale_x_continuous(expand = c(0,0), breaks = scales::breaks_pretty()) +
         scale_fill_distiller(palette = "Spectral") +
         theme_minimal() +
         labs(
